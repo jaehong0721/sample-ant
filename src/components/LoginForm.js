@@ -9,12 +9,16 @@ import {
 import './LoginFormStyle.css'
 import * as LoginApi from '../api/login'
 
+export const login = { onSuccess : () => {}, onFail: () => {} }
+
 const LoginForm = () => {
     const onFinish = async (values) => {
+        login.onSuccess();
         await LoginApi.login(username, password);
         console.log('Success', values);
     }
     const onFinishFailed = (values) => {
+        login.onFail();
         console.log('Fail', values);
     }
 
